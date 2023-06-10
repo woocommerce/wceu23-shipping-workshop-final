@@ -1,0 +1,25 @@
+{
+	"name": "opr/wceu23-shipping-workshop",
+	"description": "The starter template for the Build a 'not at home' shipping extension in the WooCommerce Checkout Block",
+	"type": "wordpress-plugin",
+	"license": "GPL-3.0-or-later",
+	"scripts": {
+		"phpcbf": "phpcbf --standard=phpcs.xml .",
+		"phpcs": "phpcs --standard=phpcs.xml ."
+	},
+	"require-dev": {
+		"woocommerce/woocommerce-sniffs": "^0.1.0",
+		"squizlabs/php_codesniffer": "^3.6"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+	"extra": {
+		"scripts-description": {
+			"phpcs": "Analyze code against the WordPress coding standards with PHP_CodeSniffer",
+			"phpcbf": "Fix coding standards warnings/errors automatically with PHP Code Beautifier"
+		}
+	}
+}

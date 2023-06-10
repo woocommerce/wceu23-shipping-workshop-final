@@ -1,0 +1,32 @@
+{
+	"apiVersion": 2,
+	"name": "shipping-workshop/shipping-workshop-block",
+	"version": "2.0.0",
+	"title": "Alternative Shipping Options Block",
+	"category": "woocommerce",
+	"description": "Adds a select field to let the shopper choose alternative shipping instructions.",
+	"supports": {
+		"html": false,
+		"align": false,
+		"multiple": false,
+		"reusable": false
+	},
+	"parent": [ "woocommerce/checkout-shipping-methods-block" ],
+	"attributes": {
+		"lock": {
+			"type": "object",
+			"default": {
+				"remove": true,
+				"move": true
+			}
+		},
+		"text": {
+			"type": "string",
+			"source": "html",
+			"selector": ".wp-block-shipping-workshop",
+			"default": ""
+		}
+	},
+	"textdomain": "shipping-workshop",
+	"editorStyle": "file:../../../build/style-shipping-workshop-block.css"
+}

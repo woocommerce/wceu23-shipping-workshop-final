@@ -1,0 +1,13 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "create-block/shipping-workshop-2",
+	"version": "1.0.0",
+	"title": "Shipping Workshop 2",
+	"category": "widgets",
+	"icon": "palmtree",
+	"textdomain": "shipping-workshop-2",
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css"
+}
