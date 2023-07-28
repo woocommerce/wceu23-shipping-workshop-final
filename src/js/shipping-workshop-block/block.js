@@ -47,6 +47,7 @@ export const Block = ( { checkoutExtensionData, extensions } ) => {
 		 * on the validation data store can be found here:
 		 * https://github.com/woocommerce/woocommerce-blocks/blob/trunk/docs/third-party-developers/extensibility/data-store/validation.md
 		 */
+		return store.getValidationError( validationErrorId );
 
 		/**
 		 * [frontend-step-07-extra-credit]
@@ -77,6 +78,11 @@ export const Block = ( { checkoutExtensionData, extensions } ) => {
 		 * 💰 Extra credit: Ensure the `setExtensionData` function is not called multiple times. We
 		 * can use the `debouncedSetExtensionData` function for this. The API is the same.
 		 */
+		setExtensionData(
+			'shipping-workshop',
+			'alternateShippingInstruction',
+			selectedAlternateShippingInstruction
+		);
 	}, [ setExtensionData, selectedAlternateShippingInstruction ] );
 
 	/**
@@ -94,6 +100,11 @@ export const Block = ( { checkoutExtensionData, extensions } ) => {
 		 * changes. This code should use `setExtensionData` to update the `otherShippingValue` key
 		 * in the `shipping-workshop` namespace of the checkout data store.
 		 */
+		setExtensionData(
+			'shipping-workshop',
+			'otherShippingValue',
+			otherShippingValue
+		);
 		/**
 		 * [frontend-step-03-extra-credit]
 		 * 💰 Extra credit: Ensure the `setExtensionData` function is not called multiple times. We
@@ -122,6 +133,22 @@ export const Block = ( { checkoutExtensionData, extensions } ) => {
 		 * `setValidationErrors` call, thus, the spoiler of [frontend-step-04] comes after the one
 		 * of [frontend-step-04-extra-credit].
 		 */
+		if (
+			selectedAlternateShippingInstruction !== 'other' ||
+			otherShippingValue !== ''
+		) {
+			if ( validationError ) {
+				clearValidationError( validationErrorId );
+			}
+			return;
+		}
+		setValidationErrors( {
+			[ validationErrorId ]: {
+				message: __( 'Please add some text', 'shipping-workshop' ),
+				hidden: true,
+			},
+		} );
+
 		/**
 		 * [frontend-step-05]
 		 * 📝 Update the above code so that it will use `clearValidationError` to remove the
@@ -139,8 +166,13 @@ export const Block = ( { checkoutExtensionData, extensions } ) => {
 		 * 💡 Don't forget to update the dependencies of the `useEffect` when you reference new
 		 * functions/variables!
 		 */
+		clearValidationError,
+		selectedAlternateShippingInstruction,
+		setValidationErrors,
+		validationErrorId,
 		otherShippingValue,
-		setExtensionData,
+		debouncedSetExtensionData,
+		validationError,
 	] );
 
 	return (
@@ -168,7 +200,11 @@ export const Block = ( { checkoutExtensionData, extensions } ) => {
 								? ' has-error'
 								: '' )
 						}
-						onChange={ setOtherShippingValue }
+						onChange={ ( e ) => {
+							setOtherShippingValue( e );
+							setHasInteracted( true );
+						} }
+						onBlur={ () => setHasInteracted( true ) }
 						value={ otherShippingValue }
 						required={ true }
 						placeholder={ __(
@@ -183,6 +219,12 @@ export const Block = ( { checkoutExtensionData, extensions } ) => {
 					 * hidden. It's fine to just use a div, and display the `message` property of
 					 * the validation error.
 					 */ }
+
+					{ validationError?.hidden ? null : (
+						<div className="wc-block-components-validation-error">
+							{ validationError?.message }
+						</div>
+					) }
 				</>
 			) }
 		</div>
