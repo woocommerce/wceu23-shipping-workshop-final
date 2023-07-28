@@ -9,7 +9,8 @@ export const options = [
 		value: 'try-again',
 	},
 	/**
-	 * 📝Add more options here!
+	 * [frontend-step-01]
+	 * 📝 Add more options using the same format as above. Ensure one option has the key "other".
 	 */
 	{
 		label: __( 'Throw over fence', 'shipping-workshop' ),
