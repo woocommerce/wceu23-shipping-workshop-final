@@ -92,6 +92,9 @@ export const Block = ( { checkoutExtensionData, extensions } ) => {
 	 * the select's value. If it is "pristine" then we should keep the error hidden.
 	 */
 
+	const [ hasInteractedWithOtherInput, setHasInteractedWithOtherInput ] =
+		useState( false );
+
 	/* Handle changing the "other" value */
 	useEffect( () => {
 		/**
@@ -145,7 +148,7 @@ export const Block = ( { checkoutExtensionData, extensions } ) => {
 		setValidationErrors( {
 			[ validationErrorId ]: {
 				message: __( 'Please add some text', 'shipping-workshop' ),
-				hidden: true,
+				hidden: ! hasInteractedWithOtherInput,
 			},
 		} );
 
@@ -202,9 +205,9 @@ export const Block = ( { checkoutExtensionData, extensions } ) => {
 						}
 						onChange={ ( e ) => {
 							setOtherShippingValue( e );
-							setHasInteracted( true );
+							setHasInteractedWithOtherInput( true );
 						} }
-						onBlur={ () => setHasInteracted( true ) }
+						onBlur={ () => setHasInteractedWithOtherInput( true ) }
 						value={ otherShippingValue }
 						required={ true }
 						placeholder={ __(
@@ -220,7 +223,8 @@ export const Block = ( { checkoutExtensionData, extensions } ) => {
 					 * the validation error.
 					 */ }
 
-					{ validationError?.hidden ? null : (
+					{ validationError?.hidden ||
+					! hasInteractedWithOtherInput ? null : (
 						<div className="wc-block-components-validation-error">
 							{ validationError?.message }
 						</div>
