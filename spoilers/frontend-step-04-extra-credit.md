@@ -1,11 +1,9 @@
 ```jsx
 if (
-    selectedAlternateShippingInstruction !== 'other' ||
-    otherShippingValue !== ''
+  selectedAlternateShippingInstruction !== 'other' ||
+  otherShippingValue !== ''
 ) {
-    if ( validationError ) {
-        clearValidationError( validationErrorId );
-    }
-    return;
+  clearValidationError( validationErrorId );
+  return;
 }
 ```
