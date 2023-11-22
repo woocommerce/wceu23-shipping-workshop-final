@@ -24,10 +24,15 @@ add_action(
 	'woocommerce_blocks_loaded',
 	function() {
 		require_once __DIR__ . '/shipping-workshop-extend-store-endpoint.php';
+		require_once __DIR__ . '/shipping-workshop-extend-woo-core.php';
 		require_once __DIR__ . '/shipping-workshop-blocks-integration.php';
 
 		// Initialize our store endpoint extension when WC Blocks is loaded.
 		Shipping_Workshop_Extend_Store_Endpoint::init();
+
+		// Add hooks relevant to extending the Woo core experience.
+		$extend_core = new Shipping_Workshop_Extend_Woo_Core();
+		$extend_core->init();
 
 		add_action(
 			'woocommerce_blocks_checkout_block_registration',
