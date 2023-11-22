@@ -24,19 +24,11 @@ use Automattic\WooCommerce\Blocks\Integrations\IntegrationInterface;
 		$this->register_shipping_workshop_block_editor_scripts();
 		$this->register_shipping_workshop_block_editor_styles();
 		$this->register_main_integration();
-		$this->extend_store_api();
 		$this->save_shipping_instructions();
 		$this->show_shipping_instructions_in_order();
 
 		$this->show_shipping_instructions_in_order_confirmation();
 		$this->show_shipping_instructions_in_order_email();
-	}
-
-	/**
-	 * Extends the cart schema to include the shipping-workshop value.
-	 */
-	private function extend_store_api() {
-		Shipping_Workshop_Extend_Store_Endpoint::init();
 	}
 
     private function save_shipping_instructions() {
