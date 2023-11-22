@@ -24,11 +24,6 @@ use Automattic\WooCommerce\Blocks\Integrations\IntegrationInterface;
 		$this->register_shipping_workshop_block_editor_scripts();
 		$this->register_shipping_workshop_block_editor_styles();
 		$this->register_main_integration();
-		$this->save_shipping_instructions();
-		$this->show_shipping_instructions_in_order();
-
-		$this->show_shipping_instructions_in_order_confirmation();
-		$this->show_shipping_instructions_in_order_email();
 	}
 
 	/**
