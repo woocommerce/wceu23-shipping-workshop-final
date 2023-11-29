@@ -23,7 +23,6 @@ class Shipping_Workshop_Extend_Store_Endpoint {
 
 	/**
 	 * Bootstraps the class and hooks required data.
-	 *
 	 */
 	public static function init() {
 		self::$extend = Automattic\WooCommerce\StoreApi\StoreApi::container()->get( Automattic\WooCommerce\StoreApi\Schemas\ExtendSchema::class );
@@ -52,34 +51,33 @@ class Shipping_Workshop_Extend_Store_Endpoint {
 	 * Register shipping workshop schema into the Checkout endpoint.
 	 *
 	 * @return array Registered schema.
-	 *
 	 */
 	public static function extend_checkout_schema() {
 
-        return [
-            'otherShippingValue'   => [
-                'description' => 'Other text for shipping instructions',
-                'type'        => 'string',
-                'context'     => [ 'view', 'edit' ],
-                'readonly'    => true,
-                'optional'    => true,
-                'arg_options' => [
-                    'validate_callback' => function( $value ) {
+		return [
+			'otherShippingValue'           => [
+				'description' => 'Other text for shipping instructions',
+				'type'        => 'string',
+				'context'     => [ 'view', 'edit' ],
+				'readonly'    => true,
+				'optional'    => true,
+				'arg_options' => [
+					'validate_callback' => function( $value ) {
 						return is_string( $value );
-                    },
-                ]
-            ],
-            'alternateShippingInstruction'   => [
-            	'description' => 'Alternative shipping instructions for the courier',
-                'type'        => 'string',
-                'context'     => [ 'view', 'edit' ],
-                'readonly'    => true,
-                'arg_options' => [
-                    'validate_callback' => function( $value ) {
+					},
+				],
+			],
+			'alternateShippingInstruction' => [
+				'description' => 'Alternative shipping instructions for the courier',
+				'type'        => 'string',
+				'context'     => [ 'view', 'edit' ],
+				'readonly'    => true,
+				'arg_options' => [
+					'validate_callback' => function( $value ) {
 						return is_string( $value );
-                    },
-                ]
-            ],
-        ];
-    }
+					},
+				],
+			],
+		];
+	}
 }
