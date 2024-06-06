@@ -34,7 +34,7 @@ export const Edit = ( { attributes, setAttributes } ) => {
 						text ||
 						defaultShippingText ||
 						__(
-							'If I am not at home, please…',
+							'If I am not at home please…',
 							'shipping-workshop'
 						)
 					}
