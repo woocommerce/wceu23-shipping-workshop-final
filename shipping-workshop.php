@@ -13,6 +13,11 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+function shipping_workshop_load_textdomain() {
+	load_plugin_textdomain( 'shipping-workshop', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+}
+add_action( 'init', 'shipping_workshop_load_textdomain' );
+
 // Define SHIPPING_WORKSHOP_VERSION.
 $plugin_data = get_file_data( __FILE__, array( 'version' => 'version' ) );
 define( 'SHIPPING_WORKSHOP_VERSION', $plugin_data['version'] );
