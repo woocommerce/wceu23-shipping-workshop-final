@@ -66,3 +66,16 @@ function register_Shipping_Workshop_block_category( $categories ) {
 	);
 }
 add_action( 'block_categories_all', 'register_Shipping_Workshop_block_category', 10, 2 );
+
+add_filter( 'hooked_block_types', function( $hooked_block_types, $relative_position, $anchor_block_type, $context ) {
+	if ( 'woocommerce/checkout-shipping-methods-block' === $anchor_block_type ) {
+		$hooked_block_types[] = 'shipping-workshop/shipping-workshop-block';
+	}
+	return $hooked_block_types;
+}, 10, 4 );
+
+add_filter( 'hooked_block_shipping-workshop/shipping-workshop-block',
+	function( array|null $parsed_hooked_block, string $hooked_block_type, string $relative_position, array $parsed_anchor_block, WP_Block_Template|WP_Post|array $context) {
+		$parsed_hooked_block['innerContent'] = '<div class="wp-block-shipping-workshop-shipping-workshop-block"></div>';
+		return $parsed_hooked_block;
+	}, 10, 5 );
