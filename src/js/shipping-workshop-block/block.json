@@ -11,7 +11,9 @@
 		"multiple": false,
 		"reusable": false
 	},
-	"parent": [ "woocommerce/checkout-shipping-methods-block" ],
+	"blockHooks": {
+		"woocommerce/checkout-shipping-methods-block": "after"
+	},
 	"attributes": {
 		"lock": {
 			"type": "object",
